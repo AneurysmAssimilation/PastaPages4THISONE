@@ -1,12 +1,14 @@
 package com.example.chrisbennett.mylistview;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddRecord extends AppCompatActivity {
 
@@ -32,8 +34,8 @@ public class AddRecord extends AppCompatActivity {
         String rating = ((TextView) findViewById(R.id.txtRating)).getText().toString();
         String review = ((TextView) findViewById(R.id.txtReview)).getText().toString();
 
-        values.put(ReviewSchema.Review.COLUMN_NAME_REVIEWER, reviewer);
-        values.put(ReviewSchema.Review.COLUMN_NAME_TITLE, title);
+        values.put(ReviewSchema.Review.COLUMN_NAME_REVIEWER, reviewer); //name
+        values.put(ReviewSchema.Review.COLUMN_NAME_TITLE, title); //brand
         values.put(ReviewSchema.Review.COLUMN_NAME_RATING, rating);
         values.put(ReviewSchema.Review.COLUMN_NAME_REVIEW, review);
 
@@ -43,8 +45,9 @@ public class AddRecord extends AppCompatActivity {
 
 
         if(newRowId > -1) {
-            TextView success = (TextView) findViewById(R.id.txtSuccess);
-            success.setText("Review successfully added");
+            Toast.makeText(AddRecord.this, "Review Added!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, SummaryView.class);
+            startActivity(intent);
         }
         else {
             TextView success = (TextView) findViewById(R.id.txtSuccess);

@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void addRecord(View v) {
-
         Intent intent = new Intent(this,AddRecord.class);
         startActivity(intent);
     }

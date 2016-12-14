@@ -37,4 +37,5 @@ public class summary_view_name extends AppCompatActivity {
     }
 
 
+
 }

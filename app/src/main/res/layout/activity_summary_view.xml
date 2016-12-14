@@ -43,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sort2"
+                android:onClick="sortBrand"
                 android:layout_weight="1" />
 
             <Button
@@ -50,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sort3"
+                android:onClick="sortRating"
                 android:layout_weight="1" />
 
             <Button
@@ -57,6 +59,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sort4"
+                android:onClick="sortReview"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="ADD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/returnButton"
+                android:onClick="returnToAdd"
                 android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>

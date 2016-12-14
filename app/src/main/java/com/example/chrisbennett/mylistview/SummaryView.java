@@ -15,7 +15,7 @@ public class SummaryView extends AppCompatActivity {
 
     ReviewDBHelper mDbHelper;
     SQLiteDatabase db;
-
+    boolean switchRa = false, switchBr = false, switchNa = false, switchRe = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,77 @@ public class SummaryView extends AppCompatActivity {
 
         });
     }
-    protected void sortName(View v) {
-        Intent intent = new Intent(this,summary_view_name.class);
+
+    public void sortName(View view) {
+        if(!switchNa) {
+            switchNa = true;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY REVIEWER ASC", null);//name
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+        else {
+            switchNa = false;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY REVIEWER DESC", null);//name
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+    }
+
+    public void sortRating(View view) {
+        if(!switchRa) {
+            switchRa = true;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY RATING ASC", null);
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+        else {
+            switchRa = false;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY RATING DESC", null);
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+    }
+
+    public void sortBrand(View view) {
+        if(!switchBr) {
+            switchBr = true;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY TITLE ASC", null);
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+        else {
+            switchBr = false;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY TITLE DESC", null);
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+    }
+
+    public void sortReview(View view) {
+        if(!switchRe) {
+            switchRe = true;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY REViEW ASC", null);
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+        else {
+            switchRe = false;
+            Cursor c = db.rawQuery("SELECT * FROM " + ReviewSchema.Review.TABLE_NAME + " ORDER BY REVIEW DESC", null);
+            ReviewCursorAdapter adapter = new ReviewCursorAdapter(this, c);
+            ListView listview = (ListView) findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+        }
+    }
+
+    public void returnToAdd(View view) {
+        Intent intent = new Intent(this, AddRecord.class);
         startActivity(intent);
     }
 
